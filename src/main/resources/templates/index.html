@@ -1,0 +1,103 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <title>Exam System</title>
+</head>
+
+<body>
+<header id="header">
+    <div class="vertical-nav bg-white" id="sidebar">
+        <div class="py-4 px-3 mb-2 mt-2 bg-light">
+            <div class="align-items-center" id="half">
+                <a class="navbar-brand text-center" href="#"><span class="exam">Exam</span> <span class="system">System</span></a>
+            </div>
+        </div>
+        <p class="text-center text-gray font-weight-bold text-uppercase px-3 small pb-3 mb-2 mt-3">Main</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+                    About Us
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <i class="fas fa-clipboard-list mr-3 text-primary fa-fw"></i>
+                    Shows
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link text-dark font-italic bg-light">
+                    <i class="far fa-id-card mr-3 text-primary fa-fw"></i>
+                    Bio
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="page-content p-5" id="content">
+    <div class="d-flex">
+        <button
+                id="sidebarCollapse"
+                type="button"
+                class="btn btn-light bg-white rounded-pill px-4 mb-4">
+            <i class="fa fa-bars mr-2"></i><small class="text-uppercase font-weight-bolder">MENU</small>
+        </button>
+
+        <button
+                id="login"
+                type="button"
+                class="btn btn-light bg-white rounded-pill px-2 mb-4 ml-auto">
+            <a th:href="@{/login}"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+
+        </button>
+    </div>
+
+    <h2 class="display-4 font-weight-bold text-center text-white">Exam System</h2>
+    <div class="separator mt-4"></div>
+
+    <figure class="mb-4" id="img-div">
+        <div id="image">
+            <img src="https://onlineexammaker.com/kb/wp-content/uploads/2020/11/16052532201-768x433.png" alt="..."/>
+        </div>
+    </figure>
+
+    <div class="row text-white">
+        <div class="col-lg-7 mx-auto">
+            <p class="lead">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse animi tempora illum doloribus, aperiam
+                cum in
+                voluptas! Id laudantium nemo quisquam tenetur modi et. Asperiores repellendus nemo omnis provident
+                doloribus?
+            </p>
+            <p>Liczba odwiedzających: <span th:text="${servicestatistic.visitorscount}"></span></p>
+            <p>Liczba przeprowadzonych egzaminów: <span th:text="${servicestatistic.examscount}"></span></p>
+            <p>Liczba studentów: <span th:text="${servicestatistic.studentscount}"></span></p>
+            <p>Liczba egzaminatorów: <span th:text="${servicestatistic.examinatorscount}"></span></p>
+            <p>Data rozpoczęcia: <span th:text="${servicestatistic.startdate}"></span></p>
+
+            <p class="lead text-white text-center">
+                <a href="#" class="text-white"> <i class="fa-solid fa-arrow-up"></i></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script th:src="@{/js/index.js}"></script>
+</body>
+</html>

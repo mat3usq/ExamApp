@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examify365</title>
+    <link rel="stylesheet" th:href="@{/css/logged.css}"/>
+    <link rel="stylesheet" href="../static/css/logged.css"/>
+    <link rel="stylesheet" href="logged.css">
+</head>
+
+<body>
+
+<div th:insert="navigation :: navigation"></div>
+
+<div class="cointainer-section">
+
+    <div class="image-background"></div>
+    <div class="text-cointainer">
+        <h2>Welcome to Examify365</h2>
+        <h1>We're delighted to have you with us.</h1>
+        <p>
+            We are committed to providing you with the highest quality experience in taking exams online. May your
+            journey with us be filled with educational successes and achievements.
+        </p>
+        <button class="learn-more"><a th:href="@{/aboutApp}">Learn More</a></button>
+    </div>
+</div>
+</body>
+</html>
+
+

@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:  "Manrope", Helvetica;
+}
+.container-nav {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.logo-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 9vh;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    font-weight: 700;
+    color: #060606;
+    font-size: 22px;
+}
+
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 5px 0px rgba(23, 26, 31, 0.09), 0px 0px 2px 0px rgba(23, 26, 31, 0.12);
+    position: absolute;
+    margin:auto;
+    height: 9vh;
+    top: 0;
+}
+
+#nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+#nav ul li a {
+    text-decoration: none;
+    color: #424856;
+    display: block;
+    padding: 0.5vh 1vw;
+}
+
+.icon-container{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 9vh;
+    font-size: 22px;
+    top: 0;
+    right: 0;
+    color: black;
+}
+
+.fa-regular.fa-bell {
+    margin-right: 20px;
+}
+
+.fa-solid.fa-chevron-down{
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.menu:hover {
+    cursor: pointer;
+}
+
+#nav ul li a:hover{
+    color: #6D31ED;
+}
+
+.logout{
+    border: 1px solid #6D31ED;
+    border-radius: 4px;
+    background: #6D31ED;
+    display: inline-flex;
+    padding: 5px 18px 5px 14px;
+    align-items: center;
+    gap: 8px;
+    color: #FFF;
+    font-size: 16px;
+    line-height: 26px;
+    margin-left: 1vw;
+}
+
+
+.container-groups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 9vh;
+}
+
+.group {
+    width: 300px;
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.group:hover {
+    background-color: #ececec;
+    cursor: pointer;
+}
+
+.group h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+.group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.group li {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.colorIdCode {
+    color: #6D31ED;
+    font-weight: bold;
+}
+
+.colorIdCode span {
+    margin-left: 3px;
+    color: black;
+}
+
+.group .idCodeContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.studentsList{
+    margin-bottom: 0.5vh;
+    margin-top: 0.5vh;
+}

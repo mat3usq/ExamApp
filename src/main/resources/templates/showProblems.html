@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Problems</title>
+    <link rel="stylesheet" th:href="@{/css/showProblems.css}"/>
+    <link rel="stylesheet" href="../static/css/showProblems.css"/>
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+<div class="header">
+    <h1>Problems</h1>
+    <br>
+    <h2>Filter by:</h2>
+</div>
+<div class="filter-form-container">
+    <form class="form" th:action="@{/showProblems}" method="get">
+        <p class="title">Category</p>
+        <select id="category" class="category" name="category" th:value="${param.category}">
+            <option value="">All</option>
+            <th:block th:each="category : ${categories}">
+                <option th:value="${category}" th:text="${category}" ></option>
+            </th:block>
+        </select>
+        <p class="title">Status</p>
+        <select id="status" class="status" name="status" th:value="${param.status}">
+            <option value="">All</option>
+            <th:block th:each="status : ${statuses}">
+                <option th:value="${status}" th:text="${status}"></option>
+            </th:block>
+        </select>
+        <input type="submit" value="Filter" class="filter-button">
+    </form>
+</div>
+<div class="container">
+    <div th:each="entry : ${problemsByCategory}" class="box category">
+        <h2 th:text="${entry.key}"></h2>
+        <div class="problems">
+            <div th:each="problem : ${entry.value}" class="problem">
+                <a th:href="@{'/showProblems/' + ${problem.getId()}}">
+                    <img th:src="@{'data:image/bmp;base64,' + ${problem.photo != null ? problem.photo : ''}}" alt="Problem Photo"/>
+                    <p class="title">Description</p>
+                    <p th:text="${problem.description}"></p>
+                    <p class="title">Reporting Person</p>
+                    <p th:text="${problem.username}"></p>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="back-to-top" style="display: none; position: fixed; bottom: 20px; right: 20px;">↑ Back to Top</button>
+</body>
+
+<script>
+    window.onscroll = function() {
+        if (window.scrollY > 100) {
+            document.getElementById('back-to-top').style.display = 'block';
+        } else {
+            document.getElementById('back-to-top').style.display = 'none';
+        }
+    };
+
+    document.getElementById('back-to-top').onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+</script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('category')) {
+        const category = urlParams.get('category');
+        document.getElementById('category').value = category;
+    }
+    if (urlParams.has('status')) {
+        const status = urlParams.get('status');
+        document.getElementById('status').value = status;
+    }
+</script>
+</html>

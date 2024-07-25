@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/editExam.css}"/>
+    <link rel="stylesheet" href="../static/css/editExam.css"/>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var exampoolstrategySelect = document.getElementById("exampoolstrategy");
+            var questionPoolSetDiv = document.getElementById("question_pool_set");
+
+            exampoolstrategySelect.addEventListener("change", function() {
+                if (exampoolstrategySelect.value === "0") {
+                    questionPoolSetDiv.style.display = "none";
+                } else {
+                    questionPoolSetDiv.style.display = "block";
+                }
+            });
+
+            if (exampoolstrategySelect.value === "0") {
+                questionPoolSetDiv.style.display = "none";
+            } else {
+                questionPoolSetDiv.style.display = "block";
+            }
+        });
+    </script>
+
+</head>
+<body>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<div class="edit-exam-box">
+    <h2>Edit an Exam</h2>
+    <div class="contener">
+        <div class="buttonsImg">
+            <img th:src="@{/images/editExam.jpg}" alt="" srcset=""/>
+            <div class="buttons">
+                <a th:href="@{/exams}">
+                    <button class="cancel-edit-exam">Cancel</button>
+                </a>
+                <!--        <button class="createExam" type="submit">Add Question</button>-->
+            </div>
+        </div>
+        <input type="hidden" name="examId" th:value="${examId}"/>
+
+        <form th:action="@{/editExamDetails/{examId}(examId=${examId})}" th:object="${exam}" method="post" role="form">
+
+            <div class="input-box">
+                <label>Subject</label>
+                <select name="subject" class="form-control">
+                    <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"
+                            th:selected="${subject.id == exam.examsSubject?.id}"></option>
+                </select>
+            </div>
+            <div class="input-box">
+                <label>Description</label
+                ><input type="text" name="description" class="form-control" th:value="${exam.description}"/>
+            </div>
+
+            <div class="date-box">
+                <div class="start-date">
+                    <label>Start Date</label>
+                    <input type="date" class="date" name="startdate"
+                           th:value="${#temporals.format(exam.startDate, 'yyyy-MM-dd')}"/>
+                    <input type="time" class="time" name="starttime"
+                           th:value="${#temporals.format(exam.startTime, 'HH:mm')}"/>
+                </div>
+
+                <div class="end-date">
+                    <label>End Date</label>
+                    <input type="date" class="date" name="enddate"
+                           th:value="${#temporals.format(exam.endDate, 'yyyy-MM-dd')}"/>
+                    <input type="time" class="time" name="endtime"
+                           th:value="${#temporals.format(exam.endTime, 'HH:mm')}"/>
+                </div>
+            </div>
+            <div class="input-box">
+                <div class="question-box">
+                    <label>Question Pool</label>
+                    <select name="exampoolstrategy" class="form-control" id="exampoolstrategy">
+                        <option th:value="0" th:selected="${questionPoolStrategy == 0}">No</option>
+                        <option th:value="1" th:selected="${questionPoolStrategy == 1}">Yes</option>
+                    </select>
+                </div>
+                <div class="question-box" id="question_pool_set">
+                    <label>Number of Questions</label>
+                    <input type="number" name="count" class="form-control countQuestions" th:max="${questionQuantity}" min="0" th:value="${questionPool}"/>
+                </div>
+            </div>
+
+            <div class="questions">
+                <!--        <label>Questions List to Edit</label>-->
+
+                <!--        <div class="questionList"><p class="info">-&#45;&#45;&#45;&#45;&#45;&#45;</p></div>-->
+
+                <button class="addQuestion">Edit Exam</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

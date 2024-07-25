@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+	<link rel="stylesheet" th:href="@{/css/questionsView.css}" />
+	<title>Team Members</title>
+</head>
+<body>
+<header>
+	<div th:insert="navigation :: navigation"></div>
+</header>
+<div id="question-box">
+	<article class="question-box" th:if="${questions.empty}">
+		<div class="question-box-content">
+			<h3>
+				No open questions in the database.
+			</h3>
+		</div>
+	</article>
+
+	<article class="question-box" th:each="question: ${questions}">
+		<div class="question-box-content">
+			<h3 th:text="${question.content}"></h3>
+		</div>
+	</article>
+</div>
+</body>
+</html>

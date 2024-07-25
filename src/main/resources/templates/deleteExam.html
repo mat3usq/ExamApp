@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Exam Deletion</title>
+    <link rel="stylesheet" th:href="@{/css/deleteExam.css}" />
+    <link rel="stylesheet" href="../static/css/deleteExam.css" />
+
+</head>
+<body>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<div class="delete-exam-box">
+    <h2>Confirm Deletion</h2>
+    <div class="contener">
+        <form th:action="@{/deleteExam/{examId}(examId=${examId})}" th:object="${exam}" method="post" role="form">
+            <input type="hidden" name="examId" th:value="${examId}" />
+            <input type="hidden" name="exam" th:value="${exam}" />
+            <div class="buttonsImg">
+                <div class="buttons">
+                    <button class="cancel-delete-exam" type="button" onclick="window.location.href='/exams'">Cancel</button>
+                    <button class="deleteExam" type="submit">Delete Exam</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

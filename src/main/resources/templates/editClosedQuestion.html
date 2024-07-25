@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Closed Question</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/createQuestion.css" />
+    <link rel="stylesheet" th:href="@{/css/createQuestion.css}" />
+    <script src="../static/javascript/script.js"></script>
+    <script th:href="@{/javascript/script.js}"></script>
+    <script src="/javascript/editcloseanswer.js"></script>
+</head>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<body>
+<div class="question-box">
+<input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+<input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
+<form th:action="@{/editQuestion}" method="post" th:object="${answerForm}" role="form">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" th:value="${answerForm.question.id}" name="question.id" />
+    <input type="hidden" th:value="${examId}" name="examId" />
+        <div class="input-box">
+    <label for="content">Question Content:</label>
+    <input type="textarea" th:value="${answerForm.question.content}" name="question.content" id="content" />
+        </div>
+    <div th:each="answer, iterStat : *{answers}" id="answer-box" class="input-box">
+        <input type="hidden" th:field="*{answers[__${iterStat.index}__].id}" />
+        <div class="answerclosed">
+        <label th:for="${'answer'+iterStat.index}"></label>
+        <input type="text" th:id="${'answer'+iterStat.index}" th:field="*{answers[__${iterStat.index}__].description}" />
+        <input type="checkbox" th:field="*{answers[__${iterStat.index}__].correct}" />
+            <button type="button" th:onclick="'deleteAnswer(' + ${answer.id} + ',' + ${answerForm.question.id} + ')'">Delete</button>
+        </div>
+    </div>
+        <button type="button" th:onclick="'addNewAnswer(' + ${answerForm.question.id} + ')'">Add New Answer</button>
+        <button type="submit">Save</button>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pl">
+<head>
+    <title>Activity</title>
+</head>
+<body>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<h1>Administrators</h1>
+<div th:each="admin : ${administrators}">
+    <p th:text="${admin.firstname} + ' ' + ${admin.lastname}"></p>
+    <p th:text="${admin.email}"></p>
+    <form th:if="${admin.verificationStatus}" th:action="@{'/administrator/deactivate/' + ${admin.administrator_id}}" method="post">
+        <input type="submit" value="Deactivate">
+    </form>
+    <form th:unless="${admin.verificationStatus}" th:action="@{'/administrator/activate/' + ${admin.administrator_id}}" method="post">
+        <input type="submit" value="Activate">
+    </form>
+</div>
+
+<h1>Examiners</h1>
+<div th:each="examiner : ${examiners}">
+    <p th:text="${examiner.firstname} + ' ' + ${examiner.lastname}"></p>
+    <p th:text="${examiner.email}"></p>
+    <form th:if="${examiner.verificationStatus}" th:action="@{'/examiner/deactivate/' + ${examiner.examiner_id}}" method="post">
+        <input type="submit" value="Deactivate">
+    </form>
+    <form th:unless="${examiner.verificationStatus}" th:action="@{'/examiner/activate/' + ${examiner.examiner_id}}" method="post">
+        <input type="submit" value="Activate">
+    </form>
+</div>
+</body>
+</html>

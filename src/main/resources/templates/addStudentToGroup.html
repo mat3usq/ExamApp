@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student To Group</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" th:href="@{/css/addStudentToGroup.css}"/>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"/>
+
+</head>
+<body>
+
+<div th:insert="navigation :: navigation"></div>
+
+<div class="all-container">
+    <div class="container">
+
+        <h1>Add Students to Group</h1>
+
+        <form id="classGroupForm" action="/addStudentsToGroup" method="get">
+
+            <label for="studentsList">Add students:</label>
+            <select id="studentsList" multiple="multiple">
+                <option th:each="student : ${students}" th:value="${student.studentId}" th:text="${student.firstname + ' ' + student.lastname}"></option>
+            </select>
+
+            <input type="hidden" id="groupId" name="groupId" th:value="${groupId}">
+            <input type="hidden" id="StudentsToAdd" name="StudentsToAdd" th:value="${selectedStudents}">
+
+            <p>Selected students</p>
+            <div id="selectedStudents"></div>
+
+            <button type="button" onclick="addStudent()">Select student</button>
+            <button type="submit">Add to Group</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    let selectedStudents = [];
+    let studentNames = {};
+
+    function updateGroupStudents() {
+        const hiddenInput = document.getElementById('StudentsToAdd');
+        if (hiddenInput) {
+            hiddenInput.value = selectedStudents.join(',');
+        }
+    }
+
+    function addStudent() {
+        const select = document.getElementById('studentsList');
+        const selectedStudent = select.options[select.selectedIndex];
+
+        if (selectedStudent && !selectedStudents.includes(selectedStudent.value)) {
+            selectedStudents.push(selectedStudent.value);
+            studentNames[selectedStudent.value] = selectedStudent.text;
+
+            const selectedStudentsDiv = document.getElementById('selectedStudents');
+            const studentContainer = document.createElement('div');
+            studentContainer.className = 'student-container';
+
+            const newStudentDiv = document.createElement('div');
+            newStudentDiv.textContent = selectedStudent.text;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.className = 'remove-button';
+            removeButton.onclick = function () {
+                removeStudent(studentContainer, selectedStudent.value);
+            };
+
+            studentContainer.appendChild(newStudentDiv);
+            studentContainer.appendChild(removeButton);
+            selectedStudentsDiv.appendChild(studentContainer);
+
+            select.remove(select.selectedIndex);
+
+            updateGroupStudents();
+        }
+    }
+
+    function removeStudent(studentContainer, studentValue) {
+        const selectedStudentsDiv = document.getElementById('selectedStudents');
+        selectedStudentsDiv.removeChild(studentContainer);
+
+        const select = document.getElementById('studentsList');
+        const newOption = document.createElement('option');
+        newOption.value = studentValue;
+        newOption.text = studentNames[studentValue];
+        select.add(newOption);
+
+        selectedStudents = selectedStudents.filter(value => value !== studentValue);
+
+        delete studentNames[studentValue];
+
+        updateGroupStudents();
+    }
+</script>
+
+
+</body>
+</html>

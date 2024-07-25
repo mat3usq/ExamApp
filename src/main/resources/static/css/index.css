@@ -1,0 +1,124 @@
+#half {
+    text-align: center;
+}
+
+#half a {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/*****************************/
+.vertical-nav {
+    min-width: 16rem;
+    width: 16rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s;
+}
+
+.page-content {
+    width: calc(100% - 17rem);
+    margin-left: 17rem;
+    transition: all 0.4s;
+}
+
+#img-div {
+    width: 98%;
+    max-width: 100%;
+    display: block;
+    height: auto;
+    margin: auto;
+    background: white;
+}
+
+#image img {
+    max-width: 100%;
+    margin: auto;
+    display: block;
+}
+
+#image {
+    max-width: 99%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lead a:hover {
+    text-decoration: none;
+}
+
+#sidebar.active {
+    margin-left: -17rem;
+}
+
+#content.active {
+    width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 767px) {
+    #sidebar {
+        margin-left: -17rem;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #content {
+        width: 100%;
+        margin: 0;
+    }
+
+    #content.active {
+        margin-left: 17rem;
+        width: calc(100% - 17rem);
+    }
+}
+
+body {
+    background: linear-gradient(-45deg, #ce5491, #db532a, #2fa5d0, #7e3ebd, #F38F8F);
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.separator {
+    margin: 3rem 0;
+    border-bottom: 1px dashed #fff;
+}
+
+.text-uppercase {
+    letter-spacing: 0.1em;
+}
+
+.text-gray {
+    color: #aaa;
+}
+
+
+.exam {
+    color: #DB7093;
+}
+
+.system {
+    color: #00FA9A;
+}

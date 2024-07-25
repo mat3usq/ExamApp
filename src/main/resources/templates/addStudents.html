@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Add Students to Exam</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet"/>
+
+    <link rel="stylesheet" th:href="@{/css/addStudents.css}"/>
+    <link rel="stylesheet" href="../static/css/addStudents.css"/>
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+<h1>Add Students to Exam</h1>
+
+<form th:action="@{/addSingleStudent}" method="post">
+    <label for="singleStudent">Add Single Student:</label>
+    <input type="text" id="singleStudent" name="studentId" list="singleStudentList" required/>
+    <datalist id="singleStudentList">
+        <th:block th:each="student : ${students}">
+            <option th:value="${student.studentId}" th:text="${student.firstname + ' ' + student.lastname}"></option>
+        </th:block>
+    </datalist>
+    <input type="hidden" name="examId" th:value="${examId}"/>
+    <button type="submit">Add Single Student</button>
+</form>
+
+<form th:action="@{/addStudentsFromGroup}" method="post">
+    <label for="group">Select a Group:</label>
+    <input type="text" id="group" name="groupId" list="groupList" required/>
+    <datalist id="groupList">
+        <th:block th:each="group : ${groups}">
+            <option th:value="${group.id}" th:text="${group.code}"></option>
+        </th:block>
+    </datalist>
+    <input type="hidden" name="examId" th:value="${examId}"/>
+    <button type="submit">Add Students from Group</button>
+</form>
+
+<h2>Added Students:</h2>
+<ul>
+    <th:block th:each="addedStudent : ${addedStudents}">
+        <li th:text="${addedStudent.firstname + ' ' + addedStudent.lastname}"></li>
+    </th:block>
+</ul>
+</body>
+</html>

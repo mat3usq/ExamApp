@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Create Question</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" th:href="@{/css/createOpenQuestion.css}" />
+		<link rel="stylesheet" href="../static/css/createOpenQuestion.css" />
+
+		<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<section>
+			<div class="question-box">
+				<form th:action="@{/createOpenQuestion}" method="post" th:object="${openquestion} "role="form">
+					<h2 class="exam">Create<span class="system"> Open Question</span></h2>
+					<div class="input-box">
+						<span><i class="fa-solid fa-heading"></i></span>
+						<input type="number" id="score" name="score" th:field="*{score}" class="form-control" />
+						<label for="score">Score</label>
+					</div>
+
+					<div class="input-box">
+						<span><i class="fa-solid fa-question"></i></span>
+						<textarea type="text" id="content" name="content" th:field="*{content}" class="form-control"></textarea>
+						<label class="content" for="content">Content</label>
+					</div>
+
+					<div class="button-container">
+						<button type="submit">Create</button>
+					</div>
+
+					<a th:href="@{/}">
+						<p>Do want to go back? <span class="back">Take Me!</span></p>
+					</a>
+				</form>
+			</div>
+		</section>
+	</body>
+</html>

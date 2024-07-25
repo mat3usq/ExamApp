@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Edit Open Question</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" th:href="@{/css/createQuestion.css}" />
+  <link rel="stylesheet" href="../static/css/createQuestion.css" />
+</head>
+<body>
+<header>
+  <div th:insert="navigation :: navigation"></div>
+</header>
+<input type="hidden" id="csrfToken" value="${_csrf.token}"/>
+<input type="hidden" id="csrfHeader" value="${_csrf.headerName}"/>
+<form th:action="@{/updateOpenQuestion/__${openQuestion.getOpenQuestionId}__}" th:method="post" role="form">
+  <div class="question-box">
+    <div class="input-box">
+      <label for="content">Question Content</label>
+      <textarea id="content" name="content" th:text="${openQuestion.content}"> </textarea>
+    </div>
+
+    <div class="input-box">
+      <label for="score">Score</label>
+      <input type="number" name="score" th:value="${openQuestion.score}" />
+    </div>
+
+    <button type="submit">Save</button>
+  </div>
+</form>
+</body>
+</html>

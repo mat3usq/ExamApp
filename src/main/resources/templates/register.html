@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Rejestracja</title>
+
+    <link rel="stylesheet" th:href="@{/css/register.css}" />
+
+    <script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var firstName = document.getElementById('first-name').value;
+            var lastName = document.getElementById('last-name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (username === '' || firstName === '' || lastName === '' || email === '' || password === '' || confirmPassword === '') {
+                alert('All fields must be filled');
+                return false;
+            }
+
+            if (!isAlphabetic(firstName) || !isAlphabetic(lastName)) {
+                alert('First Name and Last Name must consist of letters only');
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Password and Confirm Password do not match');
+                return false;
+            }
+
+            return true;
+        }
+
+        function isAlphabetic(str) {
+            return /^[A-Za-z]+$/.test(str);
+        }
+    </script>
+
+    </script>
+</head>
+<body>
+<section>
+    <div class="login-box">
+        <form th:action="@{/register}" th:object="${user}" th:method="post" onsubmit="return validateForm()">
+            <h2 class="exam">Registration<span class="system">Form</span></h2>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-user"></i></span>
+                <input type="text" required id="username" name="username" th:field="*{login}"/>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-signature"></i></span>
+                <input type="text" required id="first-name" name="first-name" th:field="*{firstname}"/>
+                <label for="first-name">First Name</label>
+            </div>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-signature"></i></span>
+                <input type="text" required id="last-name" name="last-name" th:field="*{lastname}"/>
+                <label for="last-name">Last Name</label>
+            </div>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-calendar"></i></span>
+                <input type="email" required id="email" name="email" th:field="*{email}"/>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-lock"></i></span>
+                <input type="password" required id="password" name="password" th:field="*{password}"/>
+                <label for="password">Password</label>
+            </div>
+
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-check"></i></span>
+                <input type="password" required id="confirmPassword" name="confirmPassword" />
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</section>
+</body>
+</html>

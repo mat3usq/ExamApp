@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Log in</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+
+    <script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<section>
+    <div class="login-box">
+        <form th:action="@{/login}" th:object="${login}" method="post" role="form">
+            <h2 class="exam">Exam<span class="system"> System</span></h2>
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-user"></i></span>
+                <input type="text" id="login" name="login" class="form-control" th:field="*{username}" />
+                <label for="login">Login</label>
+            </div>
+
+            <div class="input-box">
+                <span><i class="fa-sharp fa-solid fa-lock"></i></span>
+                <input type="password" id="password" name="password" class="form-control" th:field="*{password}" />
+                <label for="password">Password</label>
+            </div>
+
+            <div class="remember-me">
+                <label for="remember-me">
+                    <input type="checkbox" id="remember-me" name="remember-me"  /><span>Remember Me!</span></label>
+                >
+            </div>
+
+            <button type="submit">Login</button>
+
+            <a th:href="@{/register}"
+            ><p>Don't have an account? <span class="register">Register Me!</span></p></a
+            >
+        </form>
+    </div>
+</section>
+</body>
+</html>

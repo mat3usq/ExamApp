@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Solve Exam </title>
+    <script src="../static/javascript/solve.js"></script>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/solveExam.css" />
+    <link rel="stylesheet" th:href="@{/css/solveExam.css}" />
+</head>
+<body>
+
+<div class="container-nav">
+    <div class="time-box">
+        <div id="nav">
+            <ul>
+                <li class="menu"><p th:text="'Description: ' + ${exam.getDescription()}"></p></li>
+                <li class="menu"><p th:text="'Exam starts at: ' + ${exam.getStartDate()} + ' ' + ${exam.getStartTime()}"></p></li>
+                <li class="menu"><p>Exam ends at: <span id="endDate" th:text="${exam.getEndDate()}"></span> <span id="endTime" th:text="${exam.getEndTime()}"></span></p></li>
+                <div class="icon-container">
+                    <i class="fa-regular fa-bell"></i>
+                    <i class="fa-regular fa-user"></i>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </ul>
+        </div>
+        <p id="duration" th:text="${exam.getDuration()}"></p>
+    </div>
+    <div class="logo-container">
+        <div class="logo">Examify365</div>
+    </div>
+</div>
+
+<form th:if="${timeStarts} and not ${timeEnds}" action="/saveResolvedExam" method="post">
+    <input type="hidden" name="examId" th:value="${exam.id}" />
+
+    <ul>
+        <li th:each="question : ${listOpenQuestions}">
+            <div class="ques-points">
+                <p th:text="${question.getContent()}"></p>
+                <p th:text="${question.getScore()} + ' p'" class="points"></p>
+            </div>
+            <p class="your-answer">Your answer</p>
+            <textarea th:name="'openAnswers[' + ${question.getOpenQuestionId()} + ']'"></textarea>
+        </li>
+
+        <li th:each="question, idx : ${listClosedQuestions}">
+            <div class="ques-points">
+                <p th:text="${question.getContent()}"></p>
+                <p th:text="${question.getScore()} + ' p'" class="points"></p>
+            </div>
+            <p class="your-answer">Choose answer:</p>
+            <div class="checkbox-list" th:each="answer : ${closedAnswers[idx.index]}">
+                <input type="checkbox" th:name="'closedAnswers[' + ${question.getId()} + '][]'"
+                       th:value="${answer.getId()}" th:text="${answer.description}"/>
+            </div>
+        </li>
+    </ul>
+
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+    <div class="button-container">
+        <button type="submit" id="submitExam">Save Exam</button>
+    </div>
+</form>
+
+
+<div th:if="${!timeStarts}">
+    <p>Sorry you can't solve this exam because exam doesn't start yet!</p>
+    <p th:text="'Exam starts at: ' + ${exam.getStartDate()} + ' ' +${exam.getStartTime()}"></p>
+</div>
+
+<div th:if="${timeEnds}">
+    <p>Sorry you can't solve this exam because it's already over!</p>
+    <p th:text="'Exam starts at: ' + ${exam.getEndDate()} +' ' +${exam.getEndTime()}"></p>
+</div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const endDate = document.getElementById('endDate').textContent;
+        const endTime = document.getElementById('endTime').textContent;
+        const examEndsAt = new Date(`${endDate} ${endTime}`);
+        const durationElement = document.getElementById('duration');
+
+        const updateDuration = () => {
+            const now = new Date();
+            let difference = examEndsAt - now;
+
+            if (difference > 0) {
+                const minutes = Math.floor(difference / 60000);
+                const seconds = Math.floor((difference % 60000) / 1000);
+                durationElement.textContent = `${minutes} minut ${seconds} sekund`;
+            } else {
+                document.querySelector('button[type="submit"]').click();
+            }
+        };
+
+        setInterval(updateDuration, 1000);
+        updateDuration();
+    });
+</script>
+</html>

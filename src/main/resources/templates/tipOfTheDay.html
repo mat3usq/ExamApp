@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tip of the Day</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: #f0f2f5;
+        }
+
+        #tipOfTheDay {
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            width: 50%;
+            max-width: 600px;
+        }
+
+        #tipOfTheDay h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        #tipOfTheDay p {
+            font-size: 24px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        #random-tip-button {
+            font-size: 18px;
+            padding: 15px 30px;
+            background-color: #6D31ED;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        #random-tip-button:hover {
+            background-color: #5b2bc2;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #tip-text {
+            animation: fadeIn 1s;
+        }
+    </style>
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+
+<img th:src="@{/images/tip.svg}" alt="My Happy SVG"/>
+<div id="tipOfTheDay">
+    <h2>Tip of the Day</h2>
+    <p id="tip-text">[tip]</p>
+    <button id="random-tip-button">Get a Random Tip</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var tips = [
+            "Taking a study break every 45 minutes improves concentration.",
+            "Visualizing material can help you remember it better.",
+            "Review difficult information just before sleeping to remember it better.",
+            "Studying in a group can help understand difficult concepts.",
+            "Use the Pomodoro technique to increase study efficiency.",
+            "Study actively by asking questions and making notes.",
+            "Keep a clean and organized study space, free from distractions.",
+            "Set specific, measurable, achievable, realistic, and time-bound goals (SMART method).",
+            "Create flashcards to memorize facts and concepts.",
+            "Start studying in advance to avoid last-minute stress.",
+            "Regular physical exercise improves concentration."
+        ];
+
+        document.getElementById("random-tip-button").addEventListener("click", function() {
+            var randomIndex = Math.floor(Math.random() * tips.length);
+            document.getElementById("tip-text").textContent = tips[randomIndex];
+        });
+    });
+</script>
+
+</body>
+</html>

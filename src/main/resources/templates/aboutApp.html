@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<title>About the Application | Exam Application</title>
+    <meta name="description"
+          content="Aplikacja do Egzaminów - nowoczesne narzędzie edukacyjne do przeprowadzania i rozwiązywania egzaminów online.">
+    <link rel="stylesheet" type="text/css" href="../static/css/aboutApp.css">
+    <link rel="stylesheet" th:href="@{/css/aboutApp.css}" />
+</head>
+<body>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<main>
+    <section class="about-app">
+        <br><br><br>
+        <h2>What is the Exam Application?</h2>
+        <div class="about-content">
+            <p>The Exam Application is a modern educational tool designed for conducting and solving online exams. Our application enables the creation of custom exams,
+                automatic grading of answers, analysis of results, and support for multiple question types, making it an ideal solution for educators and students.
+            </p>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Features</h2>
+        <ul class="features-list">
+            <li class="feature-item">
+                <h3>Custom Exam Creation</h3>
+                <p>Enables the creation of exams tailored to the individual needs of a course or subject.
+                    This allows teachers and educational institutions to offer a more personalized approach to assessment,
+                    encouraging deeper understanding of the material by students.
+                </p>
+            </li>
+            <li class="feature-item">
+                <h3>Automatic Answer Grading</h3>
+                <p>The system automatically grades answers, significantly saving teachers' time. The automation of the grading process
+                    allows for immediate feedback to students, supporting their learning and development.
+                </p>
+            </li>
+            <li class="feature-item">
+                <h3>Results Analytics</h3>
+                <p>Advanced tools for analyzing and comparing exam results over time. This allows the identification of trends,
+                    strengths, and weaknesses of students, as well as adapting teaching methodologies to the needs of
+                    classes and individual students.
+                </p>
+            </li>
+            <li class="feature-item">
+                <h3>Support for Multiple Question Types</h3>
+                <p>Supports various question formats, from single-choice to open-ended questions. The flexibility in designing exams allows for a
+                    more comprehensive assessment of students' knowledge and skills, contributing to a more well-rounded education.
+                </p>
+            </li>
+        </ul>
+    </section>
+
+
+    <section class="user-reviews">
+        <h2>User Reviews</h2>
+        <div class="reviews-carousel">
+            <div class="review-item">
+                <p>"Thanks to the Exam Application, the examination process has become simpler and more efficient for us." - John Smith, teacher</p>
+            </div>
+            <div class="review-item">
+                <p>"I love the ability to quickly check results and receive immediate feedback!" - Eva Johnson, student</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+<footer>
+    <p>Contact: contact@examapplication.com</p>
+</footer>
+<!-- przycisk "Powrot na gore" -->
+<button id="back-to-top" style="display: none; position: fixed; bottom: 20px; right: 20px;">↑ Back to Top</button>
+</body>
+
+<script>
+    window.onscroll = function() {
+        if (window.scrollY > 100) {
+            document.getElementById('back-to-top').style.display = 'block';
+        } else {
+            document.getElementById('back-to-top').style.display = 'none';
+        }
+    };
+
+    document.getElementById('back-to-top').onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+</script>
+</body>
+</html>
+
+

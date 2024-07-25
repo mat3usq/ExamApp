@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Report Problem</title>
+    <link rel="stylesheet" th:href="@{/css/problemReport.css}"/>
+    <link rel="stylesheet" href="../static/css/problemReport.css" />
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+    <div class="container">
+        <form th:action="@{/addProblem}" method="post" enctype="multipart/form-data">
+            <p>Category</p>
+            <label>
+                <select name="category" class="selectCategory">
+                    <option th:each="category : ${categories}" th:text="${category}" th:value="${category}" class="category"></option>
+                </select>
+            </label>
+            <div class="description">
+                <p>Description</p>
+                <textarea name="description"></textarea>
+            </div>
+
+            <div class="image">
+                <input type="file" name="image" accept="image/png, image/jpeg">
+            </div>
+            <button type="submit">Send problem</button>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+        </form>
+    </div>
+</body>
+</html>

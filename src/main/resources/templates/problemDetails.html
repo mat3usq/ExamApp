@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Problem Details</title>
+    <link rel="stylesheet" th:href="@{/css/problemsDetails.css}"/>
+</head>
+<body>
+<header>
+    <div th:insert="navigation :: navigation"></div>
+</header>
+<div class="header">
+    <h1>Problem Details</h1>
+</div>
+
+<div class="container">
+    <div class="category">
+        <h2>Description</h2>
+        <p class="problem" th:text="${problem.description}"></p>
+    </div>
+
+    <div class="category">
+        <h2>Category</h2>
+        <p class="problem" th:text="${problem.category}"></p>
+    </div>
+
+    <div class="category">
+        <h2>Reported By</h2>
+        <p class="problem" th:text="${problem.username}"></p>
+    </div>
+
+    <div class="category ">
+        <h2>Examiner Details</h2>
+        <div class="problems">
+            <div class="problem">
+                <p class="title">Name</p>
+                <p th:text="${problem.problemsExaminer.firstname} + ' ' + ${problem.problemsExaminer.lastname}"></p>
+            </div>
+            <div class="problem">
+                <p class="title">Email</p>
+                <p th:text="${problem.problemsExaminer.email}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="category">
+        <h2>Photo</h2>
+        <img class="problem" th:src="@{'data:image/bmp;base64,' + ${photo != null ? photo : ''}}" alt="Problem Photo"/>
+    </div>
+
+    <div class="category">
+        <h2>Status</h2>
+        <p>Current Status: <span th:text="${problem.status}">[Status]</span></p>
+        <form th:action="@{/changeProblemStatus}" method="post">
+            <select name="status">
+                <option th:each="status : ${problemStatuses}"
+                        th:selected="${status == problem.status}"
+                        th:value="${status}"
+                        th:text="${status}">Status</option>
+            </select>
+            <input type="hidden" name="id" th:value="${problem.id}"/>
+            <button type="submit">Change Status</button>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

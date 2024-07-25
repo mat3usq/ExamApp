@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Logs</title>
+    <link rel="stylesheet" th:href="@{/css/showLogs.css}" />
+    <link rel="stylesheet" href="../static/css/showLogs.css" />
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+<h2>Logs</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="log : ${logs}">
+        <td th:text="${log.id}"></td>
+        <td class="date-time-cell" th:text="${log.date}"></td>
+        <td th:text="${log.time}"></td>
+        <td th:text="${log.description}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

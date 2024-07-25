@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Create Question</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet" />
+
+		<link rel="stylesheet" th:href="@{/css/deleteQuestion.css}" />
+		<link rel="stylesheet" href="../static/css/deleteQuestion.css" />
+
+		<script src="https://kit.fontawesome.com/30b5c3e166.js" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div id="question-box">
+			<article class="question-box">
+				<div class="question-box-content">
+					<span class="question">Do you want delete this question?</span>
+					<h3>What is the purpose of a neural network in machine learning?</h3>
+					<p>
+						A neural network in machine learning is designed to mimic the structure and function of the human brain,
+						enabling it to recognize patterns and make decisions based on input data.
+					</p>
+					<div class="buttons">
+						<button class="delete">Delete</button>
+						<button class="cancel">Cancel</button>
+					</div>
+				</div>
+			</article>
+		</div>
+	</body>
+</html>

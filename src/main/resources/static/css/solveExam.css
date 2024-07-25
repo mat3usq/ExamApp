@@ -1,0 +1,216 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Manrope", Helvetica;
+    /*border: 1px solid red;*/
+}
+
+body {
+    background-color: #f8fafc;
+    padding-top: 5vh;
+}
+
+.container-nav {
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+
+.logo-container {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 9vh;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    font-size: 22px;
+}
+
+.icon-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 9vh;
+    top: 0;
+    right: 0;
+    color: black;
+}
+
+.logo {
+    font-weight: 700;
+    color: #060606;
+    font-size: 22px;
+}
+
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    background-color: #f8f9fa;
+    box-shadow: 0px 2px 5px 0px rgba(23, 26, 31, 0.09), 0px 0px 2px 0px rgba(23, 26, 31, 0.12);
+    position: fixed;
+    margin: auto;
+    height: 11vh;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.time-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#progressBarContainer {
+    width: 100%;
+    background-color: #eee;
+    height: 20px;
+}
+
+#progressBar {
+    width: 0%;
+    height: 100%;
+    background-color: green;
+}
+
+#duration {
+    position: fixed;
+    z-index: 1001;
+    padding-top: 35px;
+}
+
+#nav ul {
+    padding: 15px;
+}
+
+#nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+#nav ul li p {
+    text-decoration: none;
+    color: #424856;
+    display: block;
+    padding: 0.5vh 1vw;
+    font-size: 12px;
+}
+
+
+.fa-regular.fa-bell {
+    margin-right: 20px;
+}
+
+.fa-solid.fa-chevron-down {
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+form {
+    position: relative;
+    top: 10vh;
+}
+
+form li {
+    list-style-type: none;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 90vw;
+    margin: 2vh auto;
+    padding: 3vh 0;
+    box-shadow: 0px 8px 24px 0px rgba(234, 234, 234, 0.82);
+    display: flex;
+    flex-direction: column;
+}
+
+.ques-points {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0;
+}
+
+.points {
+    border-radius: 8px;
+    background: #e6f5ff;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #15ABFF;
+}
+
+.ques-points p {
+    margin: 0;
+}
+
+
+form ul li .ques-points,
+form ul li textarea,
+form ul li .your-answer {
+    margin: 0 auto;
+}
+
+form ul li div {
+    font-size: 16px;
+}
+
+form li p {
+    padding: 1vh 0;
+}
+
+.your-answer {
+    width: 95%;
+    color: #2c2c2e;
+    padding: 1.5vh 0;
+    font-weight: 500;
+}
+
+textarea {
+    resize: none;
+    width: 93%;
+    height: 16vh;
+    color: #2c2c2e;
+    outline: none;
+    border: 1px solid #e6e6e6;
+    padding: 1% 1%;
+}
+
+textarea:focus {
+    border: 1px solid #6D31ED;
+}
+
+.checkbox-list {
+    margin: 0 auto;
+    width: 95%;
+}
+
+.button-container {
+    margin: 0 auto;
+    width: 90%;
+}
+
+button {
+    border-radius: 32px;
+    background: #6D31ED;
+    color: #fff;
+    padding: 1.5vh 2vw;
+    border: 1px solid #6524f0;
+    font-size: 16px;
+    margin-bottom: 4vh;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #5b1fda;
+}

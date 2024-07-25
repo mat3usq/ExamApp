@@ -1,0 +1,33 @@
+.page_404 {
+    padding: 60px 0;
+    background: #fff;
+    font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+    width: 100%;
+}
+
+.four_zero_four_bg {
+    margin: 0 auto;
+    background-image: url(https://media1.tenor.com/m/7GE8BlhhtdUAAAAC/exams-exams-pt2.gif);
+    height: 300px;
+    width: 500px;
+    padding: 30px;
+    background-position: center;
+}
+
+h1 {
+    font-size: 80px;
+}
+
+
+.link_404 {
+    color: #fff !important;
+    padding: 10px 20px;
+    background: #6D31ED;
+    margin: 20px 0;
+    display: inline-block;
+    border-radius: 20px;
+}
+

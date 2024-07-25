@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/studentExamHistory.css">
+    <link rel="stylesheet" th:href="@{/css/studentExamHistory.css}" />
+    <title>Exam History</title>
+</head>
+<body>
+<div th:insert="navigation :: navigation"></div>
+<h2>Exam History</h2>
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Exam Description</th>
+        <th>Score</th>
+    </tr>
+    <tr th:each="exam : ${examHistory}">
+        <td th:text="${exam.date}"></td>
+        <td th:text="${exam.description}"></td>
+        <td th:text="${exam.scoreresult}"></td>
+    </tr>
+</table>
+</body>
+</html>
